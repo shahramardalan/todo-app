@@ -1,0 +1,9 @@
+body {
+  background-color: gainsboro;
+}
+
+.container {
+  width: 400px;
+  margin: auto;
+  margin-top: 10rem;
+}
