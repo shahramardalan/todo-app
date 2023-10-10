@@ -6,4 +6,10 @@ body {
   width: 400px;
   margin: auto;
   margin-top: 10rem;
+  padding: 1rem 0;
+}
+
+.list {
+  padding: 0.5rem 0;
+  border-bottom: 1px solid rgb(242, 243, 241);
 }
