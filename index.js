@@ -17,7 +17,6 @@ function createItem(item) {
   <span>${item}</span>  
   </div>
   `;
-  syncStorage(result);
 }
 
 saveBtn.addEventListener("click", () => {
@@ -27,6 +26,7 @@ saveBtn.addEventListener("click", () => {
   } else {
     createItem(result);
     todoInput.value = "";
+    syncStorage(result);
   }
 });
 
