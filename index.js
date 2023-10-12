@@ -9,7 +9,7 @@ function init() {
   for (let i = 0; i < listFromStorage.length; i++) {
     const title = listFromStorage[i];
     list = listFromStorage;
-    createItem(title);
+    renderItem(title);
   }
 }
 function syncStorage(item) {
