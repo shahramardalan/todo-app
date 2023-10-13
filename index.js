@@ -1,41 +1,68 @@
 const saveBtn = document.querySelector("#saveBtn");
 const todoInput = document.querySelector("#todoInp");
 const todoList = document.querySelector("#list");
-let result = "";
+let link = ""
 let list = [];
 
 function init() {
-  const listFromStorage = JSON.parse(localStorage.getItem("todo_list")) || [];
-  for (let i = 0; i < listFromStorage.length; i++) {
-    const title = listFromStorage[i];
-    list = listFromStorage;
-    renderItem(title);
-  }
+  loadFromStorage();
+  renderList();
+  link = document.querySelector('[data-target="8"]');
+  
 }
+
 function syncStorage(item) {
-  list.push(item);
+  const next_item = {
+    id: item.id,
+    title: item.title,
+    status: item.status,
+  };
+  list.push(next_item);
   const nextList = JSON.stringify(list);
   localStorage.setItem("todo_list", nextList);
 }
 
+function loadFromStorage() {
+  const listFromStorage = JSON.parse(localStorage.getItem("todo_list")) || [];
+  list = listFromStorage;
+}
+
+function renderList() {
+  for (let i = 0; i < list.length; i++) {
+    const item = list[i];
+    renderItem(item);
+  }
+}
 function renderItem(item) {
   todoList.innerHTML += `
   <div class="list">
-  <input type="checkbox" name="" id="" />
-  <span>${item}</span>  
+  <input type="checkbox" ${item.status ? "checked" : ""} />
+  <span data-target="${item.id}">${item.title}</span>  
   </div>
   `;
 }
 
-saveBtn.addEventListener("click", () => {
-  result = todoInput.value;
+function clearInput() {
+  todoInput.value = "";
+}
+
+function onAddItem() {
+  const result = todoInput.value;
   if (result === "") {
     alert("todo is empty!!!");
   } else {
-    renderItem(result);
-    todoInput.value = "";
-    syncStorage(result);
+    const item = {
+      id : list.length,
+      title: result,
+      status: false,
+    };
+    syncStorage(item);
+    renderItem(item);
+    clearInput();
   }
-});
+}
+
+saveBtn.addEventListener("click", onAddItem);
 
 init();
+alert(link.innerHTML)
