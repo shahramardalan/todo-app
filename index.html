@@ -7,21 +7,20 @@
     <title>Document</title>
   </head>
   <body>
-    <input type="checkbox" set>
     <div class="container">
       <div>
         <input id="todoInp" type="text" placeholder="type your todo..." />
         <button id="saveBtn">Save</button>
         <br><br>
         Status : 
-        <select>
+        <select id="filter">
           <option value="done">Done</option>
           <option value="todo">Todo</option>
           <option value="all">All</option>
         </select>
         <hr />
       </div>
-      <ul id="list"></ul>
+      <div id="list"></div>
     </div>
   </body>
   <script src="/index.js"></script>

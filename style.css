@@ -4,12 +4,20 @@ body {
 
 .container {
   width: 400px;
-  margin: auto;
+  margin: 0 auto;
   margin-top: 10rem;
-  padding: 1rem 0;
 }
 
 .list {
+  display: flex;
+  justify-content: space-between;
   padding: 0.5rem 0;
+  left: 0;
   border-bottom: 1px solid rgb(242, 243, 241);
+}
+
+.delete {
+  background-color: red;
+  color: white;
+  border-radius: 10px;
 }
