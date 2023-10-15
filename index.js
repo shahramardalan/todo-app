@@ -18,23 +18,7 @@ function init() {
   renderList();
 }
 
-function syncStorage(item) {
-  const next_item = {
-    target: item.target,
-    title: item.title,
-    status: item.status,
-  };
-  list.push(next_item);
-  const nextList = JSON.stringify(list);
-  localStorage.setItem("todo_list", nextList);
-}
-
-function updateStorage(item) {
-  const next_item = {
-    target: item.target,
-    title: item.title,
-    status: item.status,
-  };
+function syncStorage() {
   const nextList = JSON.stringify(list);
   localStorage.setItem("todo_list", nextList);
 }
@@ -45,6 +29,7 @@ function loadFromStorage() {
 }
 
 function renderList() {
+  todoList.innerHTML = "";
   for (let i = 0; i < list.length; i++) {
     const item = list[i];
     renderItem(item);
@@ -84,8 +69,9 @@ function onAddItem() {
       title: result,
       status: false,
     };
-    syncStorage(item);
-    renderItem(item);
+    list.push(item);
+    syncStorage();
+    renderList();
     clearInput();
   }
 }
@@ -102,7 +88,7 @@ function onChangeStatus(item) {
     } else {
       item[0].status = false;
     }
-    updateStorage(item);
+    syncStorage();
   }
 }
 
@@ -118,7 +104,8 @@ function onDeleteItem(item) {
   }
   const nextList = JSON.stringify(list);
   localStorage.setItem("todo_list", nextList);
-  location.reload();
+  renderList();
+  syncStorage();
 }
 
 todoList.addEventListener("click", onDeleteItem);
@@ -127,13 +114,11 @@ function onFilterList(event) {
   if (event.target.value === "done") {
     const filtered = list.filter((item) => item.status === true);
     list = filtered;
-    todoList.innerHTML = "";
     renderList();
     loadFromStorage();
   } else if (event.target.value === "todo") {
     const filtered = list.filter((item) => item.status === false);
     list = filtered;
-    todoList.innerHTML = "";
     renderList();
     loadFromStorage();
   } else if (event.target.value === "all") {
@@ -141,7 +126,6 @@ function onFilterList(event) {
       (item) => item.status === false || item.status === true
     );
     list = filtered;
-    todoList.innerHTML = "";
     renderList();
     loadFromStorage();
   }
