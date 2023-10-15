@@ -76,8 +76,6 @@ function onAddItem() {
   }
 }
 
-saveBtn.addEventListener("click", onAddItem);
-
 function onChangeStatus(item) {
   const target = item.target;
   if (target.dataset.action === "change") {
@@ -92,8 +90,6 @@ function onChangeStatus(item) {
   }
 }
 
-todoList.addEventListener("click", onChangeStatus);
-
 function onDeleteItem(item) {
   const target = item.target;
   if (target.dataset.action === "delete") {
@@ -102,13 +98,9 @@ function onDeleteItem(item) {
     const index = list.indexOf(item[0]);
     list.splice(index, 1);
   }
-  const nextList = JSON.stringify(list);
-  localStorage.setItem("todo_list", nextList);
   renderList();
   syncStorage();
 }
-
-todoList.addEventListener("click", onDeleteItem);
 
 function onFilterList(event) {
   if (event.target.value === "done") {
@@ -131,6 +123,9 @@ function onFilterList(event) {
   }
 }
 
+saveBtn.addEventListener("click", onAddItem);
+todoList.addEventListener("click", onChangeStatus);
+todoList.addEventListener("click", onDeleteItem);
 todoFilter.addEventListener("change", onFilterList);
 
 init();
