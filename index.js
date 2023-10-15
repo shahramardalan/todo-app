@@ -30,10 +30,9 @@ function loadFromStorage() {
 
 function renderList() {
   todoList.innerHTML = "";
-  for (let i = 0; i < list.length; i++) {
-    const item = list[i];
+  list.forEach((item) => {
     renderItem(item);
-  }
+  });
 }
 
 function renderItem(item) {
