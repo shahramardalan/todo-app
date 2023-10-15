@@ -123,16 +123,30 @@ function onDeleteItem(item) {
 
 todoList.addEventListener("click", onDeleteItem);
 
-todoFilter.addEventListener("change", (event) => {
-  if (event.target.value === 'done') {
+function onFilterList(event) {
+  if (event.target.value === "done") {
     const filtered = list.filter((item) => item.status === true);
-    console.log(filtered);
-  }else if(event.target.value === 'todo'){
+    list = filtered;
+    todoList.innerHTML = "";
+    renderList();
+    loadFromStorage();
+  } else if (event.target.value === "todo") {
     const filtered = list.filter((item) => item.status === false);
-    console.log(filtered);
-  }else if(event.target.value === 'all'){
-    const filtered = list.filter((item) => item.status === false || item.status === true);
-    console.log(filtered);
+    list = filtered;
+    todoList.innerHTML = "";
+    renderList();
+    loadFromStorage();
+  } else if (event.target.value === "all") {
+    const filtered = list.filter(
+      (item) => item.status === false || item.status === true
+    );
+    list = filtered;
+    todoList.innerHTML = "";
+    renderList();
+    loadFromStorage();
   }
-});
+}
+
+todoFilter.addEventListener("change", onFilterList);
+
 init();

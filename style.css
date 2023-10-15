@@ -21,3 +21,9 @@ body {
   color: white;
   border-radius: 10px;
 }
+
+#saveBtn {
+  background-color: rgb(51, 224, 51);
+  color: white;
+  border-radius: 10px;
+}
