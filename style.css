@@ -27,3 +27,14 @@ body {
   color: white;
   border-radius: 10px;
 }
+
+.opration {
+  display: flex;
+  justify-content: space-between;
+}
+
+#deleteDone {
+  background-color: blue;
+  color: white;
+  border-radius: 10px;
+}

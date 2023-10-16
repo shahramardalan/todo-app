@@ -12,12 +12,17 @@
         <input id="todoInp" type="text" placeholder="type your todo..." />
         <button id="saveBtn">Save</button>
         <br /><br />
-        Status :
-        <select id="filter">
-          <option value="all">All</option>
-          <option value="todo">Todo</option>
-          <option value="done">Done</option>
-        </select>
+        <div class="opration">
+          <div>
+            Status :
+            <select id="filter">
+              <option value="all">All</option>
+              <option value="todo">Todo</option>
+              <option value="done">Done</option>
+            </select>
+          </div>
+          <button id="deleteDone">Delete Done</button>
+        </div>
         <hr />
       </div>
       <div id="list"></div>

@@ -2,6 +2,7 @@ const saveBtn = document.querySelector("#saveBtn");
 const todoInput = document.querySelector("#todoInp");
 const todoList = document.querySelector("#list");
 const todoFilter = document.querySelector("#filter");
+const deleteDone = document.querySelector("#deleteDone");
 
 let list = [];
 
@@ -89,6 +90,14 @@ function onChangeStatus(item) {
   }
 }
 
+function onDeleteDone() {
+  const deleteCondation = list.filter((item) => item.status !== true);
+  console.log(deleteCondation);
+  list = deleteCondation;
+  syncStorage();
+  renderList();
+}
+
 function onDeleteItem(item) {
   const target = item.target;
   if (target.dataset.action === "delete") {
@@ -124,6 +133,7 @@ function onFilterList(event) {
 
 saveBtn.addEventListener("click", onAddItem);
 todoList.addEventListener("click", onChangeStatus);
+deleteDone.addEventListener("click", onDeleteDone);
 todoList.addEventListener("click", onDeleteItem);
 todoFilter.addEventListener("change", onFilterList);
 
